@@ -17,8 +17,15 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     massage = update.message.text.lower()
     if 'привіт' in massage:
         reply_text = f"Доброго дня {update.effective_user.first_name}"
+    elif massage == 'допобачення':
+        last_name = update.effective_user.last_name
+        if last_name is None:
+            reply_text = f"Допобачення {update.effective_user.first_name}"
+        else:
+            reply_text = f"Допобачення {update.effective_user.first_name} {last_name}"
     else:
         reply_text = 'Я тебе не зрозумів.'
+
 
 
     await update.message.reply_text(reply_text)
